@@ -1,0 +1,26 @@
+@media (max-width: 480px) {
+    .teste {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        background-color: #d5d3d3;
+    }
+    .executarbtn{
+        margin:8px ;
+    }
+    .conteudoparabaixo {
+        display: block;
+        margin-top: 8px; 
+    }
+    .btn {
+        margin: 10px;
+    }
+    h1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 25px;
+        
+    }
+}

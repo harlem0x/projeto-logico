@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: url('/imagem/background.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Poppins", serif;
+    font-weight: 100;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    /* Estilos do container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /*flex-grow: 1;*/ 
+    padding: 10px;
+}
+
+.btn {
+    
+    border: none;
+    padding: 7px;
+    background-color: #0762B8;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
+    margin-left: 10px;
+    
+    
+}
+.btn:hover{
+    transform: scale(1.1);
+    transition:  0.5s;
+}
+#btn-remove {
+    background-color: #FF0000;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    margin-left: 10px;
+    color: white;
+    cursor: pointer;
+    flex-shrink: 0; /* Evita que o botão encolha */
+}
+.desfazerbtn, .executarbtn {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 400;
+    font-style: normal;
+}
+.desfazerbtn {
+    background-color: #FF0000;
+    color: white;
+    margin-right: 20px;
+}
+.executarbtn {
+    background-color: #03FB5B;
+}
+
+input[name="tarefa"] {
+    padding: 9px;
+    border: none;
+    border-radius: 8px;
+}
+
+ul li {
+    list-style: none;
+    color: rgb(0, 0, 0);
+    font-weight: 400;
+    font-style: normal;
+    
+}
+ul li{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2px ; 
+}
+
+.teste {
+    background: white;
+    width: 300px;
+    height: 150px;
+    border-radius: 4px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.span_resultado {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+p {
+    color: #2a2929;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    margin-left: 20px;
+    margin-right:10px ;
+}
+.desfazerbtn:hover{
+    transform: scale(1.1);
+    transition:  0.5s;
+}
+.executarbtn:hover{
+    transform: scale(1.1);
+    transition:  0.5s;
+}
+#btn-remove:hover{
+    transform: scale(1.1);
+    transition:  0.5s;
+}
+
+
+
+/* CSS */
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #22323C; 
+    font-size: 14px;
+    color: #fff;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+.footer-logo {
+    height: 50px; /* tamanho reduzido para ser discreto */
+    margin-right: 8px; /* espaço entre o logo e o nome */
+}
+
+.footer-text {
+    margin: 0;
+}
+
+.footer-text, .footer-subtext {
+    margin: 0;
+    text-align: center;
+}
+.pfooter{
+    color: #fff;
+}
+
+
