@@ -115,7 +115,9 @@ if (isset($_POST['executar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Tarefas</title>
-    <link rel="stylesheet" href="css/style.css">,
+    <link rel="stylesheet" href="css/novo.css">
+    <link rel="stylesheet" href="css/styl.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/resposivo.css">
     
@@ -140,7 +142,9 @@ if (isset($_POST['executar'])) {
                     <li>
                         <?php echo htmlspecialchars($tarefa); ?>
                         <form method="POST" style="display:inline;">
+                        <input type= checkbox >
                             <button id="btn-remove" type="submit" name="remover" value="<?php echo $index; ?>">Remover</button>
+                            
                         </form>
                     </li>
                 <?php endforeach; ?>
@@ -181,13 +185,13 @@ if (isset($_POST['executar'])) {
 
 <!-- Rodapé -->
 
-<!-- HTML -->
+<!-- HTML 
 <footer class="footer">
     <img src="imagem/m (1).gif" alt="Logo da Empresa" class="footer-logo">
     <p  class="pfooter" class="footer-text">Tech Tasks</p>
     
     <p class="pfooter">Digital Technology</p>
-</footer>
+</footer>-->
 
   
 
