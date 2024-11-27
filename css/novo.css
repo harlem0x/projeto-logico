@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
+
 body {
-    font-family: 'Arial', sans-serif;
+    font-family:"Parkinsans", sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f9;
@@ -103,6 +105,9 @@ ul li button:hover {
     background: #333;
     color: white;
     margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer-logo {
@@ -117,4 +122,10 @@ ul li button:hover {
     text-align: center;
     width: 100%;
     height: 100px;
+}
+
+
+
+.verde{
+    background-color: #45a049;
 }

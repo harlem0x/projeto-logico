@@ -12,72 +12,81 @@ if (!isset($_SESSION['fila'])) {
     $_SESSION['fila'] = [];
 }
 
-// Função para adicionar tarefa
+
 function adicionarTarefa($tarefa)
 {
     $_SESSION['tarefas'][] = $tarefa;
-    $_SESSION['fila'][] = $tarefa; // Adiciona à fila
-    $_SESSION['pilha'][] = "Adicionar $tarefa"; // Registra a ação na pilha
+    $_SESSION['fila'][] = $tarefa; 
+    $_SESSION['pilha'][] = "Adicionar $tarefa"; 
 }
 
-// Função para remover tarefa
-// Função para remover tarefa
+
 function removerTarefa($indice)
 {
-    if (isset($_SESSION['tarefas'][$indice])) { // Verifica se o índice existe
+    if (isset($_SESSION['tarefas'][$indice])) { 
         $tarefaRemovida = $_SESSION['tarefas'][$indice];
         unset($_SESSION['tarefas'][$indice]);
-        $_SESSION['tarefas'] = array_values($_SESSION['tarefas']); // Reindexa o array
-        $_SESSION['pilha'][] = "Remover $tarefaRemovida"; // Registra a ação na pilha
+        $_SESSION['tarefas'] = array_values($_SESSION['tarefas']); 
+        
+        // Remover da fila, se presente
+        $indiceFila = array_search($tarefaRemovida, $_SESSION['fila']);
+        if ($indiceFila !== false) {
+            unset($_SESSION['fila'][$indiceFila]);
+            $_SESSION['fila'] = array_values($_SESSION['fila']); 
+        }
+
+        $_SESSION['pilha'][] = "Remover $tarefaRemovida"; 
     }
 }
 
 
-// Função para desfazer a última ação
+
 function desfazerAcao()
 {
     if (empty($_SESSION['pilha'])) {
         return;
     }
 
-    $ultimaAcao = array_pop($_SESSION['pilha']); // Pega a última ação da pilha
-    $acaoPartes = explode(' ', $ultimaAcao, 2); // Separa a ação e a tarefa
+    $ultimaAcao = array_pop($_SESSION['pilha']); 
+    $acaoPartes = explode(' ', $ultimaAcao, 2); 
 
-    // Verifica se a ação e a tarefa estão definidas corretamente
     if (count($acaoPartes) < 2) {
-        return; // Sai da função se não houver uma ação e tarefa definidas
+        return; 
     }
 
     $acao = $acaoPartes[0];
     $tarefa = $acaoPartes[1];
 
     if ($acao == 'Adicionar') {
-        // Desfaz a adição, removendo a tarefa
+        // Desfaz a adição
         $indice = array_search($tarefa, $_SESSION['tarefas']);
         if ($indice !== false) {
             unset($_SESSION['tarefas'][$indice]);
-            $_SESSION['tarefas'] = array_values($_SESSION['tarefas']); // Reindexa o array
+            $_SESSION['tarefas'] = array_values($_SESSION['tarefas']); 
         }
 
-        // Também remove da fila, caso tenha sido adicionada
+        // Remove da fila
         $indiceFila = array_search($tarefa, $_SESSION['fila']);
         if ($indiceFila !== false) {
             unset($_SESSION['fila'][$indiceFila]);
-            $_SESSION['fila'] = array_values($_SESSION['fila']); // Reindexa a fila
+            $_SESSION['fila'] = array_values($_SESSION['fila']); 
         }
     } elseif ($acao == 'Remover') {
-        // Desfaz a remoção, re-adicionando a tarefa
+        // Desfaz a remoção
         $_SESSION['tarefas'][] = $tarefa;
-        $_SESSION['fila'][] = $tarefa; // Adiciona à fila novamente
+        $_SESSION['fila'][] = $tarefa; 
+    } elseif ($acao == 'Executar') {
+        // Desfaz a execução, adicionando a tarefa de volta à fila
+        $_SESSION['fila'][] = $tarefa; 
     }
 }
 
-// Função para executar a tarefa mais antiga da fila
+// executar a tarefa mais antiga
 function executarTarefa()
 {
     if (!empty($_SESSION['fila'])) {
-        $tarefaExecutada = array_shift($_SESSION['fila']); // Remove e retorna o primeiro item da fila
-        $_SESSION['pilha'][] = "Executar $tarefaExecutada"; // Registra a execução na pilha
+        $tarefaExecutada = array_shift($_SESSION['fila']); 
+        $_SESSION['pilha'][] = "Executar $tarefaExecutada"; 
         return $tarefaExecutada;
     }
     return null;
@@ -115,17 +124,16 @@ if (isset($_POST['executar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Tarefas</title>
-    <link rel="stylesheet" href="css/novo.css">
-    <link rel="stylesheet" href="css/styl.css">
-
+    <link rel="stylesheet" href="css/novo.css">,
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/resposivo.css">
-    
+    <script src="script.js"></script>
+
 </head>
 
 <body>
 
-    <!-- Formulário para adicionar nova tarefa -->
+
     <div class="container">
         <h1 >Gerenciamento de Tarefas</h1>
         <form method="POST">
@@ -134,7 +142,7 @@ if (isset($_POST['executar'])) {
             <button class="btn" type="submit" name="adicionar">Adicionar Tarefa</button>
         </form>
 
-        <!-- Exibir lista de tarefas -->
+
         <h2>Lista de Tarefas:</h2>
         <?php if (count($_SESSION['tarefas']) > 0): ?>
             <ul>
@@ -142,9 +150,8 @@ if (isset($_POST['executar'])) {
                     <li>
                         <?php echo htmlspecialchars($tarefa); ?>
                         <form method="POST" style="display:inline;">
-                        <input type= checkbox >
+                        
                             <button id="btn-remove" type="submit" name="remover" value="<?php echo $index; ?>">Remover</button>
-                            
                         </form>
                     </li>
                 <?php endforeach; ?>
@@ -153,7 +160,7 @@ if (isset($_POST['executar'])) {
             <p>Não há tarefas na lista.</p>
         <?php endif; ?>
 
-        <!-- Exibir fila de tarefas pendentes -->
+
         <h2>Fila de Tarefas Pendentes:</h2>
         <?php if (count($_SESSION['fila']) > 0): ?>
             <ul>
@@ -165,7 +172,7 @@ if (isset($_POST['executar'])) {
             <p>Não há tarefas pendentes.</p>
         <?php endif; ?>
 
-        <!-- Botões de ação -->
+
         <div class="form">
             <form method="POST">
                 <button class="desfazerbtn" type="submit" name="desfazer">Desfazer Última Ação</button>
@@ -179,21 +186,21 @@ if (isset($_POST['executar'])) {
     </p>
     <?php endif; ?>
 
-    
 
 
 
-<!-- Rodapé -->
 
-<!-- HTML 
+
+
+
 <footer class="footer">
     <img src="imagem/m (1).gif" alt="Logo da Empresa" class="footer-logo">
     <p  class="pfooter" class="footer-text">Tech Tasks</p>
-    
-    <p class="pfooter">Digital Technology</p>
-</footer>-->
 
-  
+    <p class="pfooter">Digital Technology</p>
+</footer>
+
+
 
 </body>
 
