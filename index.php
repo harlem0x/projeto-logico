@@ -193,12 +193,12 @@ if (isset($_POST['executar'])) {
 
 
 
-<footer class="footer">
+<!--<footer class="footer">
     <img src="imagem/m (1).gif" alt="Logo da Empresa" class="footer-logo">
     <p  class="pfooter" class="footer-text">Tech Tasks</p>
 
     <p class="pfooter">Digital Technology</p>
-</footer>
+</footer>-->
 
 
 

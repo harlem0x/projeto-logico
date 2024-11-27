@@ -114,7 +114,7 @@ ul li button:hover {
     max-width: 50px;
     margin-bottom: 10px;
 }
-.teste{
+/*.teste{
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -122,7 +122,7 @@ ul li button:hover {
     text-align: center;
     width: 100%;
     height: 100px;
-}
+}*/
 
 .desfazerbtn{
     border: 1px solid rgba(246, 8, 8, 0.793);
