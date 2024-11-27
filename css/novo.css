@@ -35,7 +35,7 @@ form {
 input[type="text"] {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     border-radius: 4px;
     font-size: 16px;
 }
@@ -124,8 +124,9 @@ ul li button:hover {
     height: 100px;
 }
 
-
-
-.verde{
-    background-color: #45a049;
+.desfazerbtn{
+    border: 1px solid rgba(246, 8, 8, 0.793);
+}
+.executarbtn{
+    border: 1px solid rgb(3, 236, 26);
 }
