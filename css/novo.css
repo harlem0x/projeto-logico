@@ -123,10 +123,11 @@ ul li button:hover {
     width: 100%;
     height: 100px;
 }*/
-
+/* botoes de ação */
 .desfazerbtn{
     border: 1px solid rgba(246, 8, 8, 0.793);
 }
 .executarbtn{
     border: 1px solid rgb(3, 236, 26);
 }
+

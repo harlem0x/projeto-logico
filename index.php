@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Inicializa as sessões para tarefas, pilha e fila, se não existirem
+
 if (!isset($_SESSION['tarefas'])) {
     $_SESSION['tarefas'] = [];
 }
@@ -81,7 +81,7 @@ function desfazerAcao()
     }
 }
 
-// executar a tarefa mais antiga
+// tarefa mais antiga
 function executarTarefa()
 {
     if (!empty($_SESSION['fila'])) {
